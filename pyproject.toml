@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "eirb-com-helper"
+version = "0.1.0"
+description = ""
+readme = "README.md"
+authors = ["Thomas HORRUT <thomas.horrut@bordeaux-inp.fr>"]
+packages = [{include = "eirb-com-helper"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+telegramify-markdown = "^0.1.12"
+aiogram = "^3.13.1"
+async-timeout = "^4.0.3"
+python-dotenv-vault = "^0.6.4"
+Flask = "^3.0.3"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
