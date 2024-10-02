@@ -21,28 +21,64 @@ For the bot token, talk to @FatherBot.
 For the chat id, chat in private with the Bot and then go to `https://api.telegram.org/bot<BOT-TOKEN>/getUpdates`.
 
 
-## Convert Markdown input into MarkdownV2
+## Use the server
+
+### Start it
 
 ```sh
 # from the repository's source
 poetry shell
-cat your_markdown_file.md | python eirb-com-helper/converter.py
+python main.py
 ```
 
-## Send MarkdownV2 message in private
+### Endpoints
+
+#### `POST` `/send`
+
+Requires a body among:
+    - `text/plain`: a message content written with the standard markdown syntax
+    - `text/html`: a message content written with html tags
+
+Send the given message in the channel with the set up chat id.
+
+## Test the server
+
+Run it then try the curl requests in `eirb-com-helper/tests/test_request.sh`
+
+## Run command-line tools
+
+### Convert Markdown input into MarkdownV2
 
 ```sh
 # from the repository's source
 poetry shell
-cat your_markdownV2_file.md | python eirb-com-helper/bot.py
+cat your_markdown_file.md | python convert.py
 ```
 
-## Do all in one!
+### Convert HTML input into MarkdownV2
+
+*Not supported yet.*
+
+```sh
+# from the repository's source
+poetry shell
+cat your_html_message.html | python convert.py --html
+```
+
+### Send MarkdownV2 message in private
+
+```sh
+# from the repository's source
+poetry shell
+cat your_markdownV2_file.md | python send_message.py
+```
+
+### Do all in one!
 
 Just pipe !
 
 ```sh
 # from the repository's source
 poetry shell
-cat your_markdown_file.md | python eirb-com-helper/converter.py | python eirb-com-helper/bot.py
+cat your_markdown_file.md | python convert.py | python send_message.py
 ```

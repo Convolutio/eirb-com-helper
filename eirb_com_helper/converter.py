@@ -1,6 +1,6 @@
+from markdownify import markdownify as lib_htmlToMarkdown
 from telegramify_markdown import customize, markdownify as telegramify
 
-import sys
 
 customize.strict_markdown = True  # If you want to use __underline__ as underline, set it to False, or it will be converted to bold.
 customize.cite_expandable = True  # If you want to enable expandable citation, set it to True.
@@ -12,7 +12,5 @@ def toMarkdownV2(standardMarkdown):
     """
     return telegramify(standardMarkdown, max_line_length=None, normalize_whitespace=False)
 
-if __name__ == "__main__":
-    markdown_text = sys.stdin.read()
-    sys.stdout.write(toMarkdownV2(markdown_text))
-
+def htmlToMarkdown(htmlContent):
+    return lib_htmlToMarkdown(htmlContent, heading_style="ATX")

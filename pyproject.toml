@@ -13,6 +13,7 @@ aiogram = "^3.13.1"
 async-timeout = "^4.0.3"
 python-dotenv-vault = "^0.6.4"
 Flask = "^3.0.3"
+markdownify = "^0.13.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

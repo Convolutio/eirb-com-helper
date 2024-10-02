@@ -112,6 +112,24 @@ tests = ["cloudpickle", "hypothesis", "mypy (>=1.11.1)", "pympler", "pytest-mypy
 tests-mypy = ["mypy (>=1.11.1)", "pytest-mypy-plugins"]
 
 [[package]]
+name = "beautifulsoup4"
+version = "4.12.3"
+description = "Screen-scraping library"
+category = "main"
+optional = false
+python-versions = ">=3.6.0"
+
+[package.dependencies]
+soupsieve = ">1.2"
+
+[package.extras]
+cchardet = ["cchardet"]
+chardet = ["chardet"]
+charset-normalizer = ["charset-normalizer"]
+html5lib = ["html5lib"]
+lxml = ["lxml"]
+
+[[package]]
 name = "blinker"
 version = "1.8.2"
 description = "Fast, simple object-to-object and broadcast signaling"
@@ -256,6 +274,18 @@ python-versions = ">=3.7"
 
 [package.extras]
 dev = ["black (>=22.8.0,<22.9.0)", "flake8 (>=5.0.4,<5.1.0)", "isort (>=5.11.5,<5.12.0)", "mypy (>=1.4.1,<1.5.0)", "pre-commit (>=2.20.0,<2.21.0)", "pytest-cov (>=3.0.0,<3.1.0)", "pytest-html (>=3.1.1,<3.2.0)", "pytest (>=7.1.3,<7.2.0)", "types-setuptools (>=65.3.0,<65.4.0)"]
+
+[[package]]
+name = "markdownify"
+version = "0.13.1"
+description = "Convert HTML to markdown."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+beautifulsoup4 = ">=4.9,<5"
+six = ">=1.15,<2"
 
 [[package]]
 name = "markupsafe"
@@ -441,6 +471,22 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
+name = "six"
+version = "1.16.0"
+description = "Python 2 and 3 compatibility utilities"
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
+
+[[package]]
+name = "soupsieve"
+version = "2.6"
+description = "A modern CSS selector implementation for Beautiful Soup."
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[[package]]
 name = "telegramify-markdown"
 version = "0.1.12"
 description = "Convert Markdown to a format usable by Telegram."
@@ -511,7 +557,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.12"
-content-hash = "0744b54d30aca9bfbb2e8d3085ed3b5adcee7751cf2ec7773bd2cca9fed70a91"
+content-hash = "b69c8bf816e4f6adf02bdce7c1f59a85e369985c1c818b9aa42fb15e0fd2ef32"
 
 [metadata.files]
 aiofiles = []
@@ -523,6 +569,7 @@ annotated-types = []
 async-timeout = []
 atomicwrites = []
 attrs = []
+beautifulsoup4 = []
 blinker = []
 certifi = []
 cffi = []
@@ -536,6 +583,7 @@ idna = []
 itsdangerous = []
 jinja2 = []
 magic-filter = []
+markdownify = []
 markupsafe = []
 mistletoe = []
 more-itertools = []
@@ -551,6 +599,8 @@ pytest = []
 python-dotenv = []
 python-dotenv-vault = []
 requests = []
+six = []
+soupsieve = []
 telegramify-markdown = []
 typing-extensions = []
 urllib3 = []
