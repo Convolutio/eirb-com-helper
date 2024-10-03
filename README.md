@@ -11,7 +11,6 @@ Also add your chat id where the bot has to send messages in this file.
 
 ```env
 BOT_TOKEN="your_telegram_bot_token"
-CHAT_ID="your_chat_id"
 ```
 
 ### How to get these credentials
@@ -35,17 +34,46 @@ python main.py
 
 #### `POST` `/send`
 
-Requires a body among:
-    - `text/plain`: a message content written with the standard markdown syntax
-    - `text/html`: a message content written with html tags
+Requires the `"Content-Type": "application/json"` header with a json body with the following structure
+```json
+{
+    "chat_id": "the id of your chat with the bot",
+    "content_type": "markdown",
+    "content": "Your *beautiful* markdown message with a **standard** `format`."
+}
+```
+
+or
+
+```json
+{
+    "chat_id": "the id of your chat with the bot",
+    "content_type": "html",
+    "content": "Your <em>beautiful</em> message with the <code>HTML</code> <strong>format</strong>."
+}
+```
 
 Send the given message in the channel with the set up chat id.
 
+## Use the server since a frontend interface
+
+```sh
+cd frontend
+python -m http.server 8080
+```
+
+Then go to `localhost:8080` in your browser.
+
 ## Test the server
 
-Run it then try the curl requests in `eirb-com-helper/tests/test_request.sh`
+TODO
 
 ## Run command-line tools
+
+Also precise your chat id in the `.env` file
+```
+CHAT_ID="your chat id"
+```
 
 ### Convert Markdown input into MarkdownV2
 

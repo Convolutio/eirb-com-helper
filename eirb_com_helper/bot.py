@@ -16,9 +16,12 @@ class BadMessageFormatException(Exception):
 load_dotenv()
 
 bot_token = getenv("BOT_TOKEN")
+default_chat_id = getenv("CHAT_ID", default=None)
 
 
-async def send_message(msg: str, chat_id: str, html_format=False):
+async def send_message(msg: str, chat_id: str | None = None, html_format=False):
+    if chat_id is None:
+        chat_id = default_chat_id
     async with Bot(
         token=bot_token,
         default=DefaultBotProperties(
