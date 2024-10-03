@@ -224,6 +224,17 @@ async = ["asgiref (>=3.2)"]
 dotenv = ["python-dotenv"]
 
 [[package]]
+name = "flask-cors"
+version = "5.0.0"
+description = "A Flask extension adding a decorator for CORS support"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+Flask = ">=0.9"
+
+[[package]]
 name = "frozenlist"
 version = "1.4.1"
 description = "A list-like structure which implements collections.abc.MutableSequence"
@@ -557,7 +568,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.12"
-content-hash = "b69c8bf816e4f6adf02bdce7c1f59a85e369985c1c818b9aa42fb15e0fd2ef32"
+content-hash = "0db535598c53f78ee3de41897876b63a9a1cb393e9ecd7e07da0df90ec155279"
 
 [metadata.files]
 aiofiles = []
@@ -578,6 +589,7 @@ click = []
 colorama = []
 cryptography = []
 flask = []
+flask-cors = []
 frozenlist = []
 idna = []
 itsdangerous = []
