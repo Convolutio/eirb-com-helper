@@ -243,6 +243,14 @@ optional = false
 python-versions = ">=3.8"
 
 [[package]]
+name = "h11"
+version = "0.14.0"
+description = "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[[package]]
 name = "idna"
 version = "3.10"
 description = "Internationalized Domain Names in Applications (IDNA)"
@@ -532,6 +540,21 @@ socks = ["pysocks (>=1.5.6,!=1.5.7,<2.0)"]
 zstd = ["zstandard (>=0.18.0)"]
 
 [[package]]
+name = "uvicorn"
+version = "0.31.0"
+description = "The lightning-fast ASGI server."
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+click = ">=7.0"
+h11 = ">=0.8"
+
+[package.extras]
+standard = ["colorama (>=0.4)", "httptools (>=0.5.0)", "python-dotenv (>=0.13)", "pyyaml (>=5.1)", "uvloop (>=0.14.0,!=0.15.0,!=0.15.1)", "watchfiles (>=0.13)", "websockets (>=10.4)"]
+
+[[package]]
 name = "wcwidth"
 version = "0.2.13"
 description = "Measures the displayed width of unicode strings in a terminal"
@@ -568,7 +591,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.12"
-content-hash = "0db535598c53f78ee3de41897876b63a9a1cb393e9ecd7e07da0df90ec155279"
+content-hash = "0d92a5e522ff12a39877cf0da3045c4aef6e4e95a335ef63a1f02de8d8474d9f"
 
 [metadata.files]
 aiofiles = []
@@ -591,6 +614,7 @@ cryptography = []
 flask = []
 flask-cors = []
 frozenlist = []
+h11 = []
 idna = []
 itsdangerous = []
 jinja2 = []
@@ -616,6 +640,7 @@ soupsieve = []
 telegramify-markdown = []
 typing-extensions = []
 urllib3 = []
+uvicorn = []
 wcwidth = []
 werkzeug = []
 yarl = []

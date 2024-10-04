@@ -1,4 +1,4 @@
-from eirb_com_helper.server import app 
+from eirb_com_helper.server import init_server
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    init_server()
