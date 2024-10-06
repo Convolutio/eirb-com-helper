@@ -1,20 +1,121 @@
-<html>
-  <head>
-    <meta charset="UTF-8"/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
-  <body>
-    <h1>ENSEIRB Com Helper</h1>
-    <form id="dataForm">
-        <label for="name">Message:</label>
-        <textarea id="message" name="message" rows="100" cols="80"></textarea><br>
+    <title>Full Width Layout with Form</title>
+    <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        <label for="email">Chat id:</label>
-        <input type="text" id="chat-id" name="chat_id" required><br>
+        body, html {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+        }
 
-        <button type="submit">Submit</button>
-    </form>
+        .left-half, .rendered-content-container {
+            width: 50%;
+            height: 100vh;
+	    padding: 30px;
+        }
+
+
+	.left-half form {
+            display: flex;
+	    height: 100vh;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .input-container {
+            height: 90%;
+            border: 1px solid #ccc;
+            padding: 10px;
+            /* You can add padding if you want some spacing inside the form */
+        }
+
+	.input-container textarea {
+	    flex-grow: 1; /* Ensure it grows to fill the parent div */
+	    width: 100%; /* Make sure it takes the full width */
+	    height: 100%;
+	    border: 1px solid #ccc;
+	    padding: 10px;
+	    resize: none; /* Optional: Prevent manual resizing */
+	    overflow-y: auto; /* Enable vertical scroll when content exceeds */
+	}
+
+        .input-row {
+            height: 10%;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .input-row input {
+            flex-grow: 1;
+            margin-right: 10px;
+            padding: 10px;
+        }
+
+        .input-row button {
+            padding: 10px;
+        }
+
+        .rendered-content-container {
+            background-color: #f5f5f5;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Left half of the screen with a form -->
+    <div class="left-half">
+        <form id="dataForm" action="#" method="POST">
+            <!-- Main input div taking 90% of the height -->
+            <div class="input-container">
+                <!-- Add input fields or other form elements here -->
+		<textarea id="message" name="message" placeholder="Enter your message"></textarea>
+                <!-- Add more form fields as needed -->
+            </div>
+
+            <!-- Input and button occupying the remaining 10% of the height -->
+            <div class="input-row">
+                <input id="chat-id" type="text" placeholder="Enter your chat id" name="chat_id">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
     <script src="/send_content.js"></script>
 
-  </body>
+    <!-- Right half of the screen -->
+    <div class="rendered-content-container" id="rendered-content">
+        <!-- Content for the second half -->
+    </div>
+    <script type="text/javascript" src="dist/purify.min.js"></script>
+    <script type="text/javascript" src="dist/marked.min.js"></script>
+    <script type="module">
+	marked.use({ gfm: true, breaks: true });
+
+	const markdownContentTextarea = document.getElementById("message");
+	const renderedContentDiv = document.getElementById('rendered-content');
+
+	function renderContent() {
+		const markdownContent = markdownContentTextarea.value;
+		console.log(markdownContent);
+		renderedContentDiv.innerHTML = DOMPurify.sanitize(
+			marked.parse(markdownContent, { sanitize: true })
+		);
+	}
+
+	markdownContentTextarea.addEventListener('input', renderContent);
+    </script>
+
+</body>
 </html>
