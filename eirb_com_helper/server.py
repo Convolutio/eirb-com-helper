@@ -2,7 +2,6 @@ from flask import Flask, request, abort
 from flask_cors import CORS
 import asyncio
 from .bot import send_message as bot_send_message, BadMessageFormatException
-from .converter import toMarkdownV2, htmlToMarkdown
 
 APP_NAME = "TELEGRAM_FILE_SENDER"
 
@@ -25,6 +24,7 @@ def send_message():
     msg = data['content']
     chat_id = data['chat_id']
 
+    print("content type", content_type)
     is_markdown_content: bool = False
     if content_type == "markdown":
         is_markdown_content = True
@@ -38,9 +38,8 @@ def send_message():
     if chat_id is None:
         abort(401, "missing `chat_id` field")
 
-    converter = toMarkdownV2 if is_markdown_content else (lambda m: toMarkdownV2(htmlToMarkdown(m))) 
     try:
-        asyncio.run(bot_send_message(converter(msg), chat_id))
+        asyncio.run(bot_send_message(msg, chat_id, not is_markdown_content))
     except BadMessageFormatException as e:
         abort(401, str(e))
     return "Message sent!\n", 200

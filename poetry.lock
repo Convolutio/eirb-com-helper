@@ -498,6 +498,17 @@ optional = false
 python-versions = ">=3.8"
 
 [[package]]
+name = "sulguk"
+version = "0.8.0"
+description = "Converter HTML to Telegram Entities"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.extras]
+cli = ["aiogram"]
+
+[[package]]
 name = "telegramify-markdown"
 version = "0.1.12"
 description = "Convert Markdown to a format usable by Telegram."
@@ -568,7 +579,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.12"
-content-hash = "0db535598c53f78ee3de41897876b63a9a1cb393e9ecd7e07da0df90ec155279"
+content-hash = "9439ba05feafca305999f2b8f749e752e62335e3635d979271d367c33f998e0a"
 
 [metadata.files]
 aiofiles = []
@@ -613,6 +624,7 @@ python-dotenv-vault = []
 requests = []
 six = []
 soupsieve = []
+sulguk = []
 telegramify-markdown = []
 typing-extensions = []
 urllib3 = []

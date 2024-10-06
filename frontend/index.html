@@ -21,14 +21,14 @@
 
         .left-half, .rendered-content-container {
             width: 50%;
-            height: 100vh;
+            height: 100%;
 	    padding: 30px;
         }
 
 
 	.left-half form {
             display: flex;
-	    height: 100vh;
+	    height: 100%;
             flex-direction: column;
             justify-content: space-between;
         }
@@ -70,8 +70,10 @@
         .rendered-content-container {
             background-color: #f5f5f5;
             border: 1px solid #ccc;
+	    overflow-y: auto;
         }
     </style>
+    <link rel="stylesheet" href="/output.css"/>
 </head>
 <body>
 
@@ -106,11 +108,21 @@
 	const markdownContentTextarea = document.getElementById("message");
 	const renderedContentDiv = document.getElementById('rendered-content');
 
+	function toMessageHTML(s) {
+		const forceLineBreak = (s) => s.replace(/\n\n/g, () => "<br/>\n\n");
+		function processSpoilers(s) {
+			const parts = s.split("||");
+			const firstPart = parts.shift();
+			const lastPart = parts.pop();
+			return parts.reduce((acc, part) => acc + `<span class="spoiler">${part}</span>`, firstPart) + lastPart;
+		}
+		return processSpoilers(forceLineBreak(s));
+	}
+
 	function renderContent() {
 		const markdownContent = markdownContentTextarea.value;
-		console.log(markdownContent);
 		renderedContentDiv.innerHTML = DOMPurify.sanitize(
-			marked.parse(markdownContent, { sanitize: true })
+			marked.parse(toMessageHTML(markdownContent), { sanitize: true })
 		);
 	}
 
