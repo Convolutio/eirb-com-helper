@@ -40,8 +40,6 @@
 }
 
 #rendered-content code {
-	background-color: #f4f4f4;
-	border: 1px solid #ddd;
 	padding: 2px 4px;
 	font-family: 'Courier New', monospace;
 	font-size: 0.95em;
