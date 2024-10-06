@@ -112,6 +112,7 @@
 		const forceLineBreak = (s) => s.replace(/\n\n/g, () => "<br/>\n\n");
 		function processSpoilers(s) {
 			const parts = s.split("||");
+			if (parts.length === 1) return s;
 			const firstPart = parts.shift();
 			const lastPart = parts.pop();
 			return parts.reduce((acc, part) => acc + `<span class="spoiler">${part}</span>`, firstPart) + lastPart;
