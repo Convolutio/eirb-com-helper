@@ -1,4 +1,4 @@
-from flask import Flask, request, abort
+from flask import Flask, request, abort, render_template, escape
 from flask_cors import CORS
 import asyncio
 from .bot import send_message as bot_send_message, BadMessageFormatException
@@ -21,7 +21,7 @@ def send_message():
 
     data = request.json
     content_type = data['content_type']
-    msg = data['content']
+    msg = escape(data['content'])
     chat_id = data['chat_id']
 
     print("content type", content_type)
@@ -43,3 +43,4 @@ def send_message():
     except BadMessageFormatException as e:
         abort(401, str(e))
     return "Message sent!\n", 200
+
