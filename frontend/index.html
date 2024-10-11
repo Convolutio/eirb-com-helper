@@ -16,7 +16,35 @@
             <!-- Main markdown input div taking 90% of the height -->
             <div class="input-container">
 		<textarea id="message" name="message"
-			placeholder="Enter your message"></textarea>
+			placeholder="Enter your message here">Enter your message here (the preview will be rendered at the first edit)
+
+**bold \*\*text**
+__bold \_\_text__
+
+*italic \*text*
+_italic \_text_
+</u>underline</u>
+~strikethrough~
+~~strikethrough~~
+||spoiler||
+**bold _italic bold ~~italic bold strikethrough ||italic bold strikethrough spoiler||~~ <u>underline italic bold_</u> bold**
+[inline URL](http://www.example.com/)
+👍
+`inline fixed-width code`
+```
+pre-formatted fixed-width code block
+```
+```python
+pre-formatted fixed-width code block written in the Python programming language
+```
+>Block quotation started
+>Block quotation continued
+>Block quotation continued
+>Block quotation continued
+>The last line of the block quotation
+
+- [ ] not done
+- [x] done</textarea>
             </div>
 
 	    <!-- Chat id input and submit button occupying the remaining 10% of
@@ -35,8 +63,8 @@
         <!-- Content for the second half -->
     </div>
 
-    <script type="text/javascript" src="dist/purify.min.js"></script>
-    <script type="text/javascript" src="dist/marked.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="/render_content.js"></script>
 
     <script src="/send_content.js"></script>

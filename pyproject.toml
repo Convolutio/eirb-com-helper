@@ -16,6 +16,7 @@ Flask = "^3.0.3"
 markdownify = "^0.13.1"
 Flask-Cors = "^5.0.0"
 sulguk = "^0.8.0"
+bleach = "^6.1.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

@@ -34,11 +34,9 @@ async def send_message(msg: str, chat_id: str | None = None, html_format=False):
         ),
     ) as bot:
         try :
-            print("html format :", html_format)
             if html_format:
                 bot.session.middleware(AiogramSulgukMiddleware())
                 msg = htmlToSulgukHtml(msg)
-                print(msg)
                 await bot.send_message(
                         chat_id=chat_id, text=msg,
                         parse_mode=SULGUK_PARSE_MODE

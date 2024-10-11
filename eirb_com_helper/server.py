@@ -1,9 +1,14 @@
-from flask import Flask, request, abort, render_template, escape
+from flask import Flask, request, abort, render_template
 from flask_cors import CORS
+import bleach
 import asyncio
 from .bot import send_message as bot_send_message, BadMessageFormatException
 
 APP_NAME = "TELEGRAM_FILE_SENDER"
+ALLOWED_TAGS = bleach.sanitizer.ALLOWED_TAGS.union({"u", "s", "del", "pre", "p", "br", "span"}) # cf telegram supported tags + bleach allowed_tags
+ALLOWED_ATTRIBUTES = dict(bleach.sanitizer.ALLOWED_ATTRIBUTES)
+ALLOWED_ATTRIBUTES['span'] = ['class']
+ALLOWED_ATTRIBUTES['code'] = ['class']
 
 app = Flask(APP_NAME)
 CORS(app)
@@ -21,10 +26,9 @@ def send_message():
 
     data = request.json
     content_type = data['content_type']
-    msg = escape(data['content'])
+    msg = bleach.clean(data['content'], tags=ALLOWED_TAGS, attributes=ALLOWED_ATTRIBUTES)
     chat_id = data['chat_id']
 
-    print("content type", content_type)
     is_markdown_content: bool = False
     if content_type == "markdown":
         is_markdown_content = True

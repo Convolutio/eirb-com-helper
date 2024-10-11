@@ -14,9 +14,8 @@ def markdownToMarkdownV2(standardMarkdown):
 
 
 def htmlToSulgukHtml(htmlContent):
-    disableCheckboxInput = lambda s: s.replace("<input type=\"checkbox\" disabled=\"\">", "☑").replace("<input type=\"checkbox\" disabled=\"\" checked=\"\">","✅")
-    toSulgukSpoilers = lambda s: s.replace("<span class=\"spoiler\">", "<span class=\"tg-spoiler\">") 
-    return toSulgukSpoilers(disableCheckboxInput(htmlContent))
+    toSulgukSpoilers = lambda s: s.replace("<span class=\"spoiler\">", "<span class=\"tg-spoiler\">")
+    return toSulgukSpoilers(htmlContent)
 
 def htmlToMarkdown(htmlContent):
     return lib_htmlToMarkdown(htmlContent, heading_style="ATX")

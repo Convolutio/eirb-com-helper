@@ -1,6 +1,7 @@
 // Script for rendering markdown into HTML in real-time
 marked.use({ gfm: true, breaks: true });
 
+
 const markdownContentTextarea = document.getElementById("message");
 const renderedContentDiv = document.getElementById('rendered-content');
 
@@ -22,11 +23,17 @@ function toMessageHTML(s) {
 		if (parts.length === 1) return s;
 		const firstPart = parts.shift();
 		const lastPart = parts.pop();
-		return parts.reduce(
-			(acc, part) => acc + `<span class="spoiler">${part}</span>`,
+		const res = parts.reduce(
+			(acc, part, idx) => acc + (((idx+1)%2)?`<span class="spoiler">${part}</span>`:part),
 			firstPart) + lastPart;
+		console.log(res);
+		return res;
 	}
-	return processSpoilers(forceLineBreak(s));
+	function processCheckboxes(s) {
+		return s.replace(/\- \[ \]/g, () => "- ⬜")
+		.replace(/\- \[x\]/g, () => "- ✅")
+	}
+	return processCheckboxes(processSpoilers(forceLineBreak(s)));
 }
 
 function renderContent() {
