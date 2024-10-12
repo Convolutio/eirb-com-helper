@@ -6,26 +6,35 @@
 poetry install
 ```
 
-Add the token of the sender bot in the `./.env` file.  
-Also add your chat id where the bot has to send messages in this file.
+Add the token and the username of the sender bot in the `./.env` file. The
+username is for displaying purpose.
+In CLI mode, also add your chat id where the bot has to send messages in this
+file.
 
 ```env
 BOT_TOKEN="your_telegram_bot_token"
+BOT_USERNAME="@YourBotUsername"
+
+# Optional
+CHAT_ID="your_chat_id"
 ```
 
 ### How to get these credentials
 
-For the bot token, talk to @FatherBot.
+For the bot token, talk to @FatherBot. For the chat id, you can run the chat id
+giver then in the chat with the bot, run the `/start` command.
 
 ## Use the server
 
 ### Start the chat id giver
 
-Run this listen server for the bot to give to each user in private message their chat id when they run the command `/start` in this channel.
+Run this listen server for the bot to give to each user in private message
+their chat id when they run the command `/start` in this channel.
 
 ```sh
+# from the repository's source
 poetry shell
-poetry run python listenChatId.py
+python listenChatId.py
 ```
 
 ### Start the well-formatted message sender
@@ -38,14 +47,13 @@ poetry shell
 python main.py
 ```
 
-TODO
-- [ ]: instanciate once the Bot in the Flask app
-
 ### Endpoints
 
 #### `POST` `/send`
 
-Requires the `"Content-Type": "application/json"` header with a json body with the following structure
+Requires the `"Content-Type": "application/json"` header with a json body with
+the following structure
+
 ```json
 {
     "chat_id": "the id of your chat with the bot",
@@ -65,6 +73,11 @@ or
 ```
 
 Send the given message in the channel with the set up chat id.
+
+#### GET /
+
+Render a frontend interface to input the markdown, render it in HTML and then
+send the message as in the previewed html.
 
 ### About the format
 
@@ -102,9 +115,9 @@ __underline italic bold__
 > This is the fourth line of the quote.
 > This is the fifth line of the quote.
 
-```python
+\`\`\`python
 print("Hello, World!")
-```
+\`\`\`
 This is `inline code`
 1. First ordered list item
 2. Another item
@@ -117,14 +130,9 @@ This is `inline code`
 
 Use `<span class="spoiler"/></span>` for the spoiler.
 
-
-## Run the frontend interface
-
-```sh
-python -m http.server 8080 -d frontend
-```
-
-Then go to `localhost:8080` in your browser.
+The frontend interface use the rendered HTML to request from the flask server a
+message sending. It is more tolerant with the markdown syntax and more
+transparent with the final got message in telegram.
 
 ## Test the server
 
@@ -133,7 +141,8 @@ TODO
 ## Run command-line tools
 
 Also precise your chat id in the `.env` file
-```
+
+```sh
 CHAT_ID="your chat id"
 ```
 
@@ -147,7 +156,7 @@ cat your_markdown_file.md | python convert.py
 
 ### Convert HTML input into MarkdownV2
 
-*Not supported yet.*
+*Not supported yet and not useful, as telegram already supports some html.*
 
 ```sh
 # from the repository's source
@@ -155,20 +164,22 @@ poetry shell
 cat your_html_message.html | python convert.py --html
 ```
 
-### Send MarkdownV2 message in private
+### Send Markdown message in private
+
+The conversion into MarkdownV2 is embedded into the module.
 
 ```sh
 # from the repository's source
 poetry shell
-cat your_markdownV2_file.md | python send_message.py
+cat your_markdown_file.md | python send_message.py
 ```
 
-### Do all in one!
+### Send HTML message in private
 
-Just pipe !
+*Not supported yet.*
 
 ```sh
 # from the repository's source
 poetry shell
-cat your_markdown_file.md | python convert.py | python send_message.py
+cat your_html_message.html | python send_message.py --html
 ```

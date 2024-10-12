@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Telegram message writer</title>
-    <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon"/>
-    <link rel="stylesheet" href="/layout.css"/>
-    <link rel="stylesheet" href="/output.css"/>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='/img/favicon.png') }}" type="image/x-icon"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='layout.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='output.css') }}" />
 </head>
 <body>
+    <script>console.log("Bot username: {{ bot_username }}");</script>
 
     <!-- Left half of the screen with a form -->
     <div class="left-half">
@@ -65,9 +66,9 @@ pre-formatted fixed-width code block written in the Python programming language
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="/render_content.js"></script>
+    <script src="{{ url_for('static', filename='render_content.js') }}"></script>
 
-    <script src="/send_content.js"></script>
+    <script src="{{ url_for('static', filename='send_content.js') }}"></script>
 
 </body>
 </html>

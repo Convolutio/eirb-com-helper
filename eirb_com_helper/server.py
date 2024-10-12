@@ -1,16 +1,27 @@
-from flask import Flask, request, abort, render_template
+from flask import Flask, request, abort, render_template, jsonify
 from flask_cors import CORS
 import bleach
 import asyncio
+from os import getenv
+from pathlib import Path
 from .bot import send_message as bot_send_message, BadMessageFormatException
 
-APP_NAME = "TELEGRAM_FILE_SENDER"
+# Flask setup
+APP_NAME = "TELEGRAM_STYLED_MESSAGE_SENDER"
+BOT_USERNAME = getenv("BOT_USERNAME")
+
+# security tag whitelist for the html body in /send endpoint
 ALLOWED_TAGS = bleach.sanitizer.ALLOWED_TAGS.union({"u", "s", "del", "pre", "p", "br", "span"}) # cf telegram supported tags + bleach allowed_tags
 ALLOWED_ATTRIBUTES = dict(bleach.sanitizer.ALLOWED_ATTRIBUTES)
 ALLOWED_ATTRIBUTES['span'] = ['class']
 ALLOWED_ATTRIBUTES['code'] = ['class']
 
-app = Flask(APP_NAME)
+module_path = Path(__file__).parent
+
+app = Flask(APP_NAME,
+            static_folder=str(module_path / 'static'),
+            template_folder=str(module_path / 'templates')
+            )
 CORS(app)
 
 @app.post("/send")
@@ -48,3 +59,7 @@ def send_message():
         abort(401, str(e))
     return "Message sent!\n", 200
 
+@app.route("/")
+def server_frontend_in_index():
+    print(str(Path(app.root_path) / app.template_folder))
+    return render_template("frontend.html", bot_username=BOT_USERNAME)

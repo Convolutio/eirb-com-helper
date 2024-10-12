@@ -10,7 +10,6 @@ from aiogram.filters import CommandStart
 from aiogram.types import Message
 
 from dotenv_vault import load_dotenv
-
 load_dotenv()
 
 # Bot token can be obtained via https://t.me/BotFather

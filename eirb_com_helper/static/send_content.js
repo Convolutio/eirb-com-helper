@@ -1,5 +1,5 @@
 function sendFile(msg, chat_id) {
-  fetch("http://127.0.0.1:5000/send", {
+  fetch("/send", {
     method: 'POST',
     headers: { 'Content-Type' : 'application/json' },
     body: JSON.stringify({ chat_id, content_type: "html", content: msg })

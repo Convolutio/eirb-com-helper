@@ -5,20 +5,16 @@ from aiogram.exceptions import TelegramBadRequest
 from sulguk import AiogramSulgukMiddleware, SULGUK_PARSE_MODE
 from .converter import htmlToSulgukHtml, markdownToMarkdownV2
 
-from dotenv_vault import load_dotenv
-
 from os import getenv
+
+bot_token = getenv("BOT_TOKEN")
+default_chat_id = getenv("CHAT_ID", default=None)
 
 class BadMessageFormatException(Exception):
     """
     Exception Raised if the given message is wrongly formatted for Telegram 
     """
     pass
-
-load_dotenv()
-
-bot_token = getenv("BOT_TOKEN")
-default_chat_id = getenv("CHAT_ID", default=None)
 
 
 async def send_message(msg: str, chat_id: str | None = None, html_format=False):
