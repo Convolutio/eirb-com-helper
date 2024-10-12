@@ -23,7 +23,7 @@
 
 The previewed message will be sent to you by {{ bot_username }}. Contact him in private on Telegram, next run the '/start' command to get your chat id. Then, fill the field below with this chat id and click on Submit to get the message in your private Telegram chat.
 
-">Enter your message here (the preview will be rendered at the first edit)
+">Enter your message here
 
 > The previewed message will be sent to you by `{{ bot_username }}`. Contact him in private on Telegram, next run the `/start` command to get your chat id. Then, fill the field below with this chat id and click on *Submit* to get the message in your private Telegram chat.
 
@@ -64,7 +64,7 @@ pre-formatted fixed-width code block written in the Python programming language
             	<input id="chat-id" type="text"
             			    placeholder="Enter your chat id"
             			    name="chat_id"/>
-                    <button type="submit">Submit</button>
+                    <button type="submit" id="submit-button">Submit</button>
                 </div>
             </form>
         </div>
@@ -77,8 +77,8 @@ pre-formatted fixed-width code block written in the Python programming language
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
         <script src="{{ url_for('static', filename='render_content.js') }}"></script>
-
         <script src="{{ url_for('static', filename='send_content.js') }}"></script>
+        <script src="{{ url_for('static', filename='main.js') }}"></script>
     </main>
 
 </body>

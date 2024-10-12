@@ -46,11 +46,11 @@ def send_message():
     elif content_type != "html":
         abort(401, "`content_type` field must match \"html\" or \"markdown\" values")
 
-    if msg is None:
+    if not msg:
         abort(401, "missing `content` field")
     if not isinstance(msg, str):
         abort(401, "wrong given `content` field's type")
-    if chat_id is None:
+    if not chat_id:
         abort(401, "missing `chat_id` field")
 
     try:

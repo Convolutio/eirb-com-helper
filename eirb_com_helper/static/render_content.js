@@ -1,10 +1,6 @@
 // Script for rendering markdown into HTML in real-time
 marked.use({ gfm: true, breaks: true });
 
-
-const markdownContentTextarea = document.getElementById("message");
-const renderedContentDiv = document.getElementById('rendered-content');
-
 function toMessageHTML(s) {
 	function forceLineBreak(s) {
 		// Transform 3+n linebreaks into 3 linebreaks and n+1 <br/> tags 
@@ -35,11 +31,15 @@ function toMessageHTML(s) {
 	return processCheckboxes(processSpoilers(forceLineBreak(s)));
 }
 
-function renderContent() {
-	const markdownContent = markdownContentTextarea.value;
-	renderedContentDiv.innerHTML = DOMPurify.sanitize(
-		marked.parse(toMessageHTML(markdownContent), { sanitize: true })
-	);
-}
+function listenForRender(markdownContentTextArea, renderedContentDiv) {
 
-markdownContentTextarea.addEventListener('input', renderContent);
+  function renderContent() {
+    const markdownContent = markdownContentTextArea.value;
+    renderedContentDiv.innerHTML = DOMPurify.sanitize(
+      marked.parse(toMessageHTML(markdownContent), { sanitize: true })
+    );
+  }
+
+  markdownContentTextArea.addEventListener('input', renderContent);
+  renderContent();
+}
