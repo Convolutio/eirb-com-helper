@@ -74,7 +74,7 @@ or
 
 Send the given message in the channel with the set up chat id.
 
-#### GET /
+#### `GET` `/`
 
 Render a frontend interface to input the markdown, render it in HTML and then
 send the message as in the previewed html.
