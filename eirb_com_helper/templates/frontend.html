@@ -12,12 +12,22 @@
     <script>console.log("Bot username: {{ bot_username }}");</script>
 
     <!-- Left half of the screen with a form -->
-    <div class="left-half">
-        <form id="dataForm" action="#" method="POST">
-            <!-- Main markdown input div taking 90% of the height -->
-            <div class="input-container">
-		<textarea id="message" name="message"
-			placeholder="Enter your message here">Enter your message here (the preview will be rendered at the first edit)
+    <header><h1>Telegram styled message Sender 🤖</h1></header>
+    <main>
+        <div class="left-half">
+            <form id="dataForm" action="#" method="POST">
+                <!-- Main markdown input div taking 90% of the height -->
+                <div class="input-container">
+			<textarea id="message" name="message"
+				placeholder="Enter your message here
+
+The previewed message will be sent to you by {{ bot_username }}. Contact him in private on Telegram, next run the '/start' command to get your chat id. Then, fill the field below with this chat id and click on Submit to get the message in your private Telegram chat.
+
+">Enter your message here (the preview will be rendered at the first edit)
+
+> The previewed message will be sent to you by `{{ bot_username }}`. Contact him in private on Telegram, next run the `/start` command to get your chat id. Then, fill the field below with this chat id and click on *Submit* to get the message in your private Telegram chat.
+
+Below you can get some samples of markdown syntax :
 
 **bold \*\*text**
 __bold \_\_text__
@@ -46,29 +56,30 @@ pre-formatted fixed-width code block written in the Python programming language
 
 - [ ] not done
 - [x] done</textarea>
-            </div>
+                </div>
 
-	    <!-- Chat id input and submit button occupying the remaining 10% of
-		    the height -->
-            <div class="input-row">
-		<input id="chat-id" type="text"
-				    placeholder="Enter your chat id"
-				    name="chat_id"/>
-                <button type="submit">Submit</button>
-            </div>
-        </form>
-    </div>
+                <!-- Chat id input and submit button occupying the remaining 10% of
+            	    the height -->
+                <div class="input-row">
+            	<input id="chat-id" type="text"
+            			    placeholder="Enter your chat id"
+            			    name="chat_id"/>
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
 
-    <!-- Right half of the screen -->
-    <div class="rendered-content-container" id="rendered-content">
-        <!-- Content for the second half -->
-    </div>
+        <!-- Right half of the screen -->
+        <div class="rendered-content-container" id="rendered-content">
+            <!-- Content for the second half -->
+        </div>
 
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="{{ url_for('static', filename='render_content.js') }}"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <script src="{{ url_for('static', filename='render_content.js') }}"></script>
 
-    <script src="{{ url_for('static', filename='send_content.js') }}"></script>
+        <script src="{{ url_for('static', filename='send_content.js') }}"></script>
+    </main>
 
 </body>
 </html>
