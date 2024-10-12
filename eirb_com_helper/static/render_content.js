@@ -26,7 +26,6 @@ function toMessageHTML(s) {
 		const res = parts.reduce(
 			(acc, part, idx) => acc + (((idx+1)%2)?`<span class="spoiler">${part}</span>`:part),
 			firstPart) + lastPart;
-		console.log(res);
 		return res;
 	}
 	function processCheckboxes(s) {
