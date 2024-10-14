@@ -26,6 +26,9 @@ giver then in the chat with the bot, run the `/start` command.
 
 ## Use the server
 
+Simply run `./run.sh`, to run the server and the telegram listener separatly,
+refer to the next two sections.
+
 ### Start the chat id giver
 
 Run this listen server for the bot to give to each user in private message
