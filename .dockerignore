@@ -6,5 +6,4 @@ tests
 README.md
 .env
 .env.example
-.env.production
 __pycache__
