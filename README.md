@@ -26,6 +26,12 @@ giver then in the chat with the bot, run the `/start` command.
 
 ## Use the server
 
+### With docker compose
+
+Run `docker-compose up`, or `docker compose up`, to run the bot using docker.
+
+### Without docker compose
+
 Simply run `./run.sh`, to run the server and the telegram listener separatly,
 refer to the next two sections.
 
