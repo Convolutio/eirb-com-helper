@@ -1,12 +1,17 @@
 # Converter
 
-## Install dependencies
+This project includes a web server offering an interface to write markdown 
+message which is then sent to the user with a telegram bot with the right
+formatting.
 
-```sh
-poetry install
-```
+## Installation
 
-Add the token and the username of the sender bot in the `./.env` file. The
+### Setup the .env 
+
+Use the file `/.env.example` to get started, and follow the next instruction to
+setup the bot.
+
+Add the token and the username of the sender bot in the `/.env` file. The
 username is for displaying purpose.
 In CLI mode, also add your chat id where the bot has to send messages in this
 file.
@@ -17,6 +22,9 @@ BOT_USERNAME="@YourBotUsername"
 
 # Optional
 CHAT_ID="your_chat_id"
+HOST=0.0.0.0  # Host the server will listen on
+PORT=5000  # Port the server will listen on
+MODE=PRODUCTION  # =DEBUG for debug mode
 ```
 
 ### How to get these credentials
@@ -24,9 +32,33 @@ CHAT_ID="your_chat_id"
 For the bot token, talk to @FatherBot. For the chat id, you can run the chat id
 giver then in the chat with the bot, run the `/start` command.
 
-## Use the server
+## How to run the bot
 
-### Start the chat id giver
+You can run the bot using `docker compose` or by running the `run.sh` script
+
+### With docker compose
+
+Create a file `.env.production`, and setup it as described above 
+
+Run `docker-compose up`, or `docker compose up`, to run the bot using docker.
+
+### Without docker compose
+
+#### Install dependencies
+
+Run the following command at the root of the repository :
+
+```
+poetry install
+```
+
+#### Run the project
+
+Simply run `./run.sh`, to run the server and the telegram listener separatly,
+refer to the next two sections.
+
+
+#### Run the chat id giver only
 
 Run this listen server for the bot to give to each user in private message
 their chat id when they run the command `/start` in this channel.
@@ -37,7 +69,7 @@ poetry shell
 python listenChatId.py
 ```
 
-### Start the well-formatted message sender
+#### Run the well-formatted message sender only
 
 Run in another process this Flask server, which will be listened by default on `http://127.0.0.1:5000`
 
@@ -47,9 +79,9 @@ poetry shell
 python main.py
 ```
 
-### Endpoints
+## API documentation
 
-#### `POST` `/send`
+### `POST` `/send`
 
 Requires the `"Content-Type": "application/json"` header with a json body with
 the following structure
@@ -74,14 +106,14 @@ or
 
 Send the given message in the channel with the set up chat id.
 
-#### `GET` `/`
+### `GET` `/`
 
 Render a frontend interface to input the markdown, render it in HTML and then
 send the message as in the previewed html.
 
 ### About the format
 
-#### Markdown
+### Markdown
 
 The markdown is strict. Then, the syntax here is supported
 
@@ -126,7 +158,7 @@ This is `inline code`
 1. Actual numbers don't matter, just that it's a number
 ```
 
-#### HTML
+### HTML
 
 Use `<span class="spoiler"/></span>` for the spoiler.
 
