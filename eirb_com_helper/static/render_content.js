@@ -1,6 +1,13 @@
 // Script for rendering markdown into HTML in real-time
 marked.use({ gfm: true, breaks: true });
 
+// After input, wait 1 sec inactivity before save
+const TIME_BEFORE_SAVE = 1000;
+let timeoutId = null;
+
+/**
+  * @param {string} s 
+  */
 function toMessageHTML(s) {
 	function forceLineBreak(s) {
 		// Transform 3+n linebreaks into 3 linebreaks and n+1 <br/> tags 
@@ -31,15 +38,29 @@ function toMessageHTML(s) {
 	return processCheckboxes(processSpoilers(forceLineBreak(s)));
 }
 
+
+/**
+  * Compile markdown to HTML and write it inside renderedContentDiv
+  * @param {string} markdownContent
+  * @param {HTMLElement} renderedContentDiv
+  */
+function renderContent(markdownContent, renderedContentDiv) {
+  renderedContentDiv.innerHTML = DOMPurify.sanitize(
+    marked.parse(toMessageHTML(markdownContent), { sanitize: true })
+  );
+}
+
+
 function listenForRender(markdownContentTextArea, renderedContentDiv) {
+  markdownContentTextArea.addEventListener('input', () => {
+    renderContent(markdownContentTextArea.value, renderedContentDiv);
 
-  function renderContent() {
-    const markdownContent = markdownContentTextArea.value;
-    renderedContentDiv.innerHTML = DOMPurify.sanitize(
-      marked.parse(toMessageHTML(markdownContent), { sanitize: true })
-    );
-  }
+    // save draft to store
+    if (timeoutId !== null)
+      clearTimeout(timeoutId);
 
-  markdownContentTextArea.addEventListener('input', renderContent);
-  renderContent();
+    timeoutId = setTimeout(() => {
+      setDraft(markdownContentTextArea.value);
+    }, TIME_BEFORE_SAVE);
+  });
 }
