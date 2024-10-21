@@ -5,7 +5,7 @@
 }
 
 body {
-	height: 100vh;
+	height: 100dvh;
 	width: 100vw;
 	display: grid;
   grid-template-areas:  "header preview"
@@ -92,6 +92,68 @@ header {
 	overflow-y: auto;
 }
 
+.help-modal--back {
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: #2d2d2d40;
+}
+
+.help-modal--container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  border-radius: .25rem;
+  padding: 1rem 2rem;
+  max-width: 90vw;
+
+  background-color: #FFF;
+}
+
+.help-modal--separator {
+  width: 75%;
+}
+
+.help-modal--header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 3rem;
+  padding: 1rem 0;
+}
+
+.help-modal--body {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  width: 100%;
+}
+
+.help-modal--close {
+  padding: 1rem;
+  border: none;
+  background-color: transparent;
+}
+
+.help-modal--close-img {
+  width: 2rem;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
 
 @media (max: 480px), screen and (orientation: portrait) {
 
