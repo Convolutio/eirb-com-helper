@@ -4,6 +4,11 @@ const chatIdInput = document.getElementById("chat-id");
 const submitButton = document.getElementById("submit-button");
 const dataForm = document.getElementById("dataForm");
 
+const helpButton = document.getElementById("help-button");
+const helpModal = document.getElementById("help-modal");
+const helpModalClose = document.getElementById("help-modal--close");
+const helpModalBack = document.getElementById("help-modal--back");
+
 const defaultText = `
 Enter your message here
 
@@ -55,3 +60,15 @@ if (draft !== "")
 
 chatIdInput.value = getChatId();
 renderContent(markdownContentTextArea.value, renderedContentDiv);
+
+helpButton.addEventListener("click", () => {
+  helpModal.classList.remove("hidden");
+});
+
+helpModalClose.addEventListener("click", () => {
+  helpModal.classList.add("hidden");
+});
+
+helpModalBack.addEventListener("click", () => {
+  helpModal.classList.add("hidden");
+});
