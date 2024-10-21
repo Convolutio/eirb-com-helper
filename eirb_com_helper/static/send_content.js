@@ -5,12 +5,13 @@ function sendFile(msg, chat_id) {
     body: JSON.stringify({ chat_id, content_type: "html", content: msg })
   })
     .then(response => {
-      if (response.ok) response.text().then(resMessage => {
-        alert("Ok: " + resMessage);
-      })
-      throw new Error('The message have not been sent. Please edit your input.');
-    }
-    )
+      if (response.ok)
+        response.text().then(resMessage => {
+          alert("Ok: " + resMessage);
+        });
+      else
+        throw new Error('The message have not been sent. Please edit your input.');
+    })
     .catch(err => alert(err));
 }
 
@@ -26,7 +27,10 @@ function listenForSubmit(submitButton, markdownContentTextArea, chatIdInput, ren
     submitButton.disabled = chatIdInput.value.length === 0
       || markdownContentTextArea.value.length === 0;
   }
-  chatIdInput.addEventListener("input", updateButtonState);
+  chatIdInput.addEventListener("input", () => {
+    updateButtonState();
+    setChatId(chatIdInput.value);
+  });
   markdownContentTextArea.addEventListener("input", updateButtonState);
 
   updateButtonState();
