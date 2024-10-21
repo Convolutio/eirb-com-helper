@@ -5,12 +5,13 @@ function sendFile(msg, chat_id) {
     body: JSON.stringify({ chat_id, content_type: "html", content: msg })
   })
     .then(response => {
-      if (response.ok) response.text().then(resMessage => {
-        alert("Ok: " + resMessage);
-      })
-      throw new Error('The message have not been sent. Please edit your input.');
-    }
-    )
+      if (response.ok)
+        response.text().then(resMessage => {
+          alert("Ok: " + resMessage);
+        });
+      else
+        throw new Error('The message have not been sent. Please edit your input.');
+    })
     .catch(err => alert(err));
 }
 
