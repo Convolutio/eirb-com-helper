@@ -7,19 +7,23 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='/img/favicon.png') }}" type="image/x-icon"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='layout.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='output.css') }}" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <script>console.log("Bot username: {{ bot_username }}");</script>
-
     <!-- Left half of the screen with a form -->
-    <header><h1>Telegram styled message Sender 🤖</h1></header>
+    <header>
+      <h1>Telegram styled message Sender 🤖</h1>
+    </header>
+
     <main>
-        <div class="left-half">
-            <form id="dataForm" action="#" method="POST">
-                <!-- Main markdown input div taking 90% of the height -->
-                <div class="input-container">
-			<textarea id="message" name="message"
-				placeholder="Enter your message here
+        <form id="dataForm" action="#" method="POST" class="editor">
+            <!-- Main markdown input div taking 90% of the height -->
+            <div class="input-container">
+  <textarea id="message" name="message"
+    placeholder="Enter your message here
 
 The previewed message will be sent to you by {{ bot_username }}. Contact him in private on Telegram, next run the '/start' command to get your chat id. Then, fill the field below with this chat id and click on Submit to get the message in your private Telegram chat.
 
@@ -34,7 +38,7 @@ __bold \_\_text__
 
 *italic \*text*
 _italic \_text_
-</u>underline</u>
+<u>underline</u>
 ~strikethrough~
 ~~strikethrough~~
 ||spoiler||
@@ -56,30 +60,37 @@ pre-formatted fixed-width code block written in the Python programming language
 
 - [ ] not done
 - [x] done</textarea>
-                </div>
+            </div>
 
-                <!-- Chat id input and submit button occupying the remaining 10% of
-            	    the height -->
-                <div class="input-row">
-            	<input id="chat-id" type="text"
-            			    placeholder="Enter your chat id"
-            			    name="chat_id"/>
-                    <button type="submit" id="submit-button">Submit</button>
-                </div>
-            </form>
-        </div>
+            <!-- Chat id input and submit button occupying the remaining 10% of
+              the height -->
+            <div class="input-row">
+                <input id="chat-id" type="text"
+                    placeholder="Enter your chat id"
+                    name="chat_id"
+                />
 
-        <!-- Right half of the screen -->
-        <div class="rendered-content-container" id="rendered-content">
-            <!-- Content for the second half -->
-        </div>
-
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-        <script src="{{ url_for('static', filename='render_content.js') }}"></script>
-        <script src="{{ url_for('static', filename='send_content.js') }}"></script>
-        <script src="{{ url_for('static', filename='main.js') }}"></script>
+                <button id="help-button" title="Où trouver le chat-id ?">
+                    <img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTEwIDE5aDN2M2gtM3ptMi0xN2M1LjM1LjIyIDcuNjggNS42MiA0LjUgOS42N2MtLjgzIDEtMi4xNyAxLjY2LTIuODMgMi41QzEzIDE1IDEzIDE2IDEzIDE3aC0zYzAtMS42NyAwLTMuMDguNjctNC4wOGMuNjYtMSAyLTEuNTkgMi44My0yLjI1QzE1LjkyIDguNDMgMTUuMzIgNS4yNiAxMiA1YTMgMyAwIDAgMC0zIDNINmE2IDYgMCAwIDEgNi02Ii8+PC9zdmc+' alt="help"/>
+                </button>
+                
+                <button type="submit" id="submit-button">
+                    <img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0ibTIgMjFsMjEtOUwyIDN2N2wxNSAybC0xNSAyeiIvPjwvc3ZnPg==' alt="submit"/>
+                </button>
+            </div>
+        </form>
     </main>
 
+    <!-- Right half of the screen -->
+    <div class="rendered-content-container" id="rendered-content">
+        <!-- Content for the second half -->
+    </div>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="{{ url_for('static', filename='render_content.js') }}"></script>
+    <script src="{{ url_for('static', filename='send_content.js') }}"></script>
+    <script src="{{ url_for('static', filename='store.js') }}"></script>
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
 </body>
 </html>
