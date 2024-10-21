@@ -27,7 +27,10 @@ function listenForSubmit(submitButton, markdownContentTextArea, chatIdInput, ren
     submitButton.disabled = chatIdInput.value.length === 0
       || markdownContentTextArea.value.length === 0;
   }
-  chatIdInput.addEventListener("input", updateButtonState);
+  chatIdInput.addEventListener("input", () => {
+    updateButtonState();
+    setChatId(chatIdInput.value);
+  });
   markdownContentTextArea.addEventListener("input", updateButtonState);
 
   updateButtonState();
