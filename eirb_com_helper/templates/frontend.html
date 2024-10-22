@@ -29,7 +29,7 @@ The previewed message will be sent to you by {{ bot_username }}. Contact him in 
 
 ">Enter your message here
 
-> The previewed message will be sent to you by `{{ bot_username }}`. Contact him in private on Telegram, next run the `/start` command to get your chat id. Then, fill the field below with this chat id and click on *Submit* to get the message in your private Telegram chat.
+> The previewed message will be sent to you by [`{{ bot_username }}`]({{ bot_link }}). Contact him in private on Telegram, next run the `/start` command to get your chat id. Then, fill the field below with this chat id and click on *Submit* to get the message in your private Telegram chat.
 
 Below you can get some samples of markdown syntax :
 
@@ -85,6 +85,30 @@ pre-formatted fixed-width code block written in the Python programming language
     <!-- Right half of the screen -->
     <div class="rendered-content-container" id="rendered-content">
         <!-- Content for the second half -->
+    </div>
+
+    <div class="help-modal hidden" id="help-modal">
+      <div class="help-modal--back" id="help-modal--back"></div>
+
+      <div class="help-modal--container">
+        <div class="help-modal--header">
+          <h3>Comment trouver mon chat id ?</h3>
+
+          <button class="help-modal--close" id="help-modal--close">
+            <img alt="close" class="help-modal--close-img" src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTE5LDYuNDFMMTcuNTksNUwxMiwxMC41OUw2LjQxLDVMNSw2LjQxTDEwLjU5LDEyTDUsMTcuNTlMNi40MSwxOUwxMiwxMy40MUwxNy41OSwxOUwxOSwxNy41OUwxMy40MSwxMkwxOSw2LjQxWiIgLz48L3N2Zz4='/>
+          </button>
+        </div>
+
+        <hr class="help-modal--separator">
+
+        <div class="help-modal--body">
+          <ol>
+            <li>Contactez <a href="{{ bot_link }}">{{ bot_username }}</a></li>
+            <li>Envoyez-lui la commande <code>/start</code></li>
+            <li>Vous recevrez votre chat id en réponse en ce sera bon !</li>
+          </ol>
+        </div>
+      </div>
     </div>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>

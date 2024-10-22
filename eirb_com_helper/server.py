@@ -62,4 +62,5 @@ def send_message():
 @app.route("/")
 def server_frontend_in_index():
     print(str(Path(app.root_path) / app.template_folder))
-    return render_template("frontend.html", bot_username=BOT_USERNAME)
+    return render_template("frontend.html", bot_username=BOT_USERNAME,
+                           bot_link=f"https://t.me/{BOT_USERNAME[1:]}")
