@@ -87,6 +87,12 @@ pre-formatted fixed-width code block written in the Python programming language
         <!-- Content for the second half -->
     </div>
 
+    <div class="preview-button" id="preview-button">
+      <img alt="preview" class="preview-button--preview" id="preview-button--preview" src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAtOTYwIDk2MCA5NjAiIHdpZHRoPSIyNHB4IiBmaWxsPSIjNWY2MzY4Ij48cGF0aCBkPSJNMjAwLTEyMHEtMzMgMC01Ni41LTIzLjVUMTIwLTIwMHYtNTYwcTAtMzMgMjMuNS01Ni41VDIwMC04NDBoNTYwcTMzIDAgNTYuNSAyMy41VDg0MC03NjB2NTYwcTAgMzMtMjMuNSA1Ni41VDc2MC0xMjBIMjAwWm0wLTgwaDU2MHYtNDgwSDIwMHY0ODBabTI4MC04MHEtODIgMC0xNDYuNS00NC41VDI0MC00NDBxMjktNzEgOTMuNS0xMTUuNVQ0ODAtNjAwcTgyIDAgMTQ2LjUgNDQuNVQ3MjAtNDQwcS0yOSA3MS05My41IDExNS41VDQ4MC0yODBabTAtNjBxNTYgMCAxMDItMjYuNXQ3Mi03My41cS0yNi00Ny03Mi03My41VDQ4MC01NDBxLTU2IDAtMTAyIDI2LjVUMzA2LTQ0MHEyNiA0NyA3MiA3My41VDQ4MC0zNDBabTAtMTAwWm0wIDYwcTI1IDAgNDIuNS0xNy41VDU0MC00NDBxMC0yNS0xNy41LTQyLjVUNDgwLTUwMHEtMjUgMC00Mi41IDE3LjVUNDIwLTQ0MHEwIDI1IDE3LjUgNDIuNVQ0ODAtMzgwWiIvPjwvc3ZnPg=='/>
+      <img alt="nopreview" class="preview-button--nopreview hidden" id="preview-button--nopreview" src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAtOTYwIDk2MCA5NjAiIHdpZHRoPSIyNHB4IiBmaWxsPSIjNWY2MzY4Ij48cGF0aCBkPSJNNDgwLTI4MHEtODIgMC0xNDYuNS00NC41VDI0MC00NDBxMjAtNDggNTYtODR0ODQtNTZsNDcgNDdxLTM5IDExLTcwIDM0LjVUMzA2LTQ0MHEyNiA0NyA3MiA3My41VDQ4MC0zNDBxMzAgMCA1OC04dDUxLTIzbDQzIDQzcS0zMiAyMy03MC41IDM1LjVUNDgwLTI4MFptMjA5LTEwNC00My00M3EyLTMgNC02LjV0NC02LjVxLTE4LTMzLTQ3LTU2LjVUNTQyLTUzMWwtNjktNjlxODIgMCAxNTAgNDQuNVQ3MjAtNDQwcS02IDE1LTEzLjUgMjlUNjg5LTM4NFpNNzkxLTU2bC02NC02NEgyMDBxLTMzIDAtNTYuNS0yMy41VDEyMC0yMDB2LTUyN2wtNjQtNjUgNTYtNTYgNzM2IDczNi01NyA1NlpNMjAwLTIwMGg0NDdMMjAwLTY0N3Y0NDdabTY0MC0zMy04MC04MHYtMzI3SDQzM0wyMzMtODQwaDUyN3EzMyAwIDU2LjUgMjMuNVQ4NDAtNzYwdjUyN1oiLz48L3N2Zz4='/>
+    </div>
+
+    <!-- Help Modal -->
     <div class="help-modal hidden" id="help-modal">
       <div class="help-modal--back" id="help-modal--back"></div>
 
@@ -103,13 +109,14 @@ pre-formatted fixed-width code block written in the Python programming language
 
         <div class="help-modal--body">
           <ol>
-            <li>Contactez <a href="{{ bot_link }}">{{ bot_username }}</a></li>
+            <li>Contactez <a target="_blank" href="{{ bot_link }}">{{ bot_username }}</a></li>
             <li>Envoyez-lui la commande <code>/start</code></li>
             <li>Vous recevrez votre chat id en réponse en ce sera bon !</li>
           </ol>
         </div>
       </div>
     </div>
+    <!-- End Help Modal -->
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>

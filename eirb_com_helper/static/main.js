@@ -1,13 +1,20 @@
+// Main elements
 const markdownContentTextArea = document.getElementById("message");
 const renderedContentDiv = document.getElementById("rendered-content");
 const chatIdInput = document.getElementById("chat-id");
 const submitButton = document.getElementById("submit-button");
 const dataForm = document.getElementById("dataForm");
 
+// Help modal
 const helpButton = document.getElementById("help-button");
 const helpModal = document.getElementById("help-modal");
 const helpModalClose = document.getElementById("help-modal--close");
 const helpModalBack = document.getElementById("help-modal--back");
+
+// Preview
+const previewButton = document.getElementById("preview-button");
+const previewButtonPreview = document.getElementById("preview-button--preview");
+const previewButtonNopreview = document.getElementById("preview-button--nopreview");
 
 const defaultText = `
 Enter your message here
@@ -45,14 +52,6 @@ pre-formatted fixed-width code block written in the Python programming language
 - [x] done
 `;
 
-listenForRender(markdownContentTextArea, renderedContentDiv);
-listenForSubmit(
-  submitButton,
-  markdownContentTextArea,
-  chatIdInput,
-  renderedContentDiv
-);
-
 // Init inputs
 const draft = getDraft();
 if (draft !== "")
@@ -72,3 +71,19 @@ helpModalClose.addEventListener("click", () => {
 helpModalBack.addEventListener("click", () => {
   helpModal.classList.add("hidden");
 });
+
+listenForRender(markdownContentTextArea, renderedContentDiv);
+listenForSubmit(
+  submitButton,
+  markdownContentTextArea,
+  chatIdInput,
+  renderedContentDiv
+);
+
+// Preview Button interaction
+previewButton.addEventListener("click", () => {
+  renderedContentDiv.classList.toggle("show");
+  previewButtonPreview.classList.toggle("hidden");
+  previewButtonNopreview.classList.toggle("hidden");
+});
+
