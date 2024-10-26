@@ -2,7 +2,7 @@ function sendFile(msg, chat_id) {
   fetch("/send", {
     method: 'POST',
     headers: { 'Content-Type' : 'application/json' },
-    body: JSON.stringify({ chat_id, content_type: "markdown", content: msg })
+    body: JSON.stringify({ chat_id, content_type: "html", content: msg })
   })
     .then(response => {
       if (response.ok)
@@ -18,7 +18,7 @@ function sendFile(msg, chat_id) {
 function listenForSubmit(submitButton, markdownContentTextArea, chatIdInput, renderedContentDiv) {
   dataForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const msg = markdownContentTextArea.value;
+      const msg = renderedContentDiv.innerHTML;
       const chat_id = chatIdInput.value;
       sendFile(msg, chat_id);
     });
