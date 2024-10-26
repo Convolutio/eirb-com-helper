@@ -70,7 +70,7 @@ header {
 }
 
 .input-row {
-	height: 10%;
+	height: 10dvh;
 	display: flex;
 	align-items: center;
 	padding: 10px;
@@ -155,6 +155,10 @@ header {
   display: none;
 }
 
+.preview-button {
+  display: none;
+}
+
 @media (max: 480px), screen and (orientation: portrait) {
 
 body {
@@ -167,9 +171,31 @@ body {
   position: fixed;
   left: 0;
   top: 0;
+  width: 100vw;
+  height: 100dvh;
 }
 
 .rendered-content-container.show {
   display: block;
 }
+
+.preview-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  background-color: #f3c420;
+
+  position: fixed;
+  bottom: calc(10dvh + 2rem);
+  right: 2rem;
+
+  padding: .75rem;
+}
+
+.preview-button--preview, .preview-button--nopreview {
+  width: 2rem;
+  aspect-ratio: 1 / 1;
+}
+
 }
